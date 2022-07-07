@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller {
 
 	public function index()
-	{
+	{	
 		$this->load->view('auth/index');
 		if ($this->session->userdata('username') === NULL){
 			$dataUserVal = $this->session->userdata('username');
@@ -60,6 +60,7 @@ class User extends CI_Controller {
 					if($cek['statusUser'] > 0){
 					//benar
 						$dataSession = [
+							'idUser' => $cek['idUser'],
 							'username' => $cek['username'],
 							'token' => $kvc,
 							'idRuleAccess' => $cek['idRuleAccess']

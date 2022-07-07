@@ -1,100 +1,295 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<title>Welcome to CodeIgniter</title>
-
-	<style type="text/css">
-
-	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
-
-	body {
-		background-color: #fff;
-		margin: 40px;
-		font: 13px/20px normal Helvetica, Arial, sans-serif;
-		color: #4F5155;
-	}
-
-	a {
-		color: #003399;
-		background-color: transparent;
-		font-weight: normal;
-		text-decoration: none;
-	}
-
-	a:hover {
-		color: #97310e;
-	}
-
-	h1 {
-		color: #444;
-		background-color: transparent;
-		border-bottom: 1px solid #D0D0D0;
-		font-size: 19px;
-		font-weight: normal;
-		margin: 0 0 14px 0;
-		padding: 14px 15px 10px 15px;
-	}
-
-	code {
-		font-family: Consolas, Monaco, Courier New, Courier, monospace;
-		font-size: 12px;
-		background-color: #f9f9f9;
-		border: 1px solid #D0D0D0;
-		color: #002166;
-		display: block;
-		margin: 14px 0 14px 0;
-		padding: 12px 10px 12px 10px;
-	}
-
-	#body {
-		margin: 0 15px 0 15px;
-		min-height: 96px;
-	}
-
-	p {
-		margin: 0 0 10px;
-		padding:0;
-	}
-
-	p.footer {
-		text-align: right;
-		font-size: 11px;
-		border-top: 1px solid #D0D0D0;
-		line-height: 32px;
-		padding: 0 10px 0 10px;
-		margin: 20px 0 0 0;
-	}
-
-	#container {
-		margin: 10px;
-		border: 1px solid #D0D0D0;
-		box-shadow: 0 0 8px #D0D0D0;
-	}
-	</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sistem Informasi Penyebaran Penyakit</title>
+  <link rel="shortcut icon" href="<?= base_url();?>assets/images/logo-dinkes.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <!-- for leaflet js -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+  integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+  integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+  crossorigin=""></script>
+  <style type="text/css">
+    #map { height: 580px;width: 100% }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="<?= base_url();?>assets/js/jquery.min.js"></script>
 </head>
 <body>
+  <nav class="navbar bg-light"  style="height: 70px">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="<?= base_url();?>assets/images/logo-dinkes.png" alt="" width="300" height="30" class="d-inline-block align-text-buttom">
+        Sistem Informasi Geografis Penyebaran Penyakit Provinsi Sumatera Selatan || <p class="d-inline-block align-text-buttom text-right" id="clock"></p> 
+        <div class="spinner-grow text-warning" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </a>
+    </div>
+  </nav>
+  <div class="" id="showData">
+    <!-- Page-Title -->
+    <!-- addd -->
+    <div class="row" >
+      <div class="" style="">
+        <div class="card">
+          <!-- add map -->
+          <div id="map"></div>
+        </div>
+      </div> <!-- end col -->
+    </div> <!-- end row -->
+  </div><!-- container -->
+  <div class="" id="formTambahData">
+    <!-- Page-Title -->
 
-<div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+    <form id="submit">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="page-title-box">
+            <div class="row">
+              <div class="col">
+                <h5 class="page-title">Detail Data Sebaran Penyakit</h5>
+              </div><!--end col-->
+              <div class="col-auto align-self-center">
+                <button type="button" onclick="tambahCancel()" class="btn btn-sm btn-outline-primary">
+                  <i data-feather="back" class="align-self-center icon-xs"></i>
+                  Kembali
+                </button>   
+              </div><!--end col-->  
+            </div><!--end row-->                                                              
+          </div><!--end page-title-box-->
+        </div><!--end col-->
+      </div><!--end row-->
+      <!-- addd -->
 
-	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+      <div class="row mt-4">
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-group">
+                <table class="table table-bordered" id='tableDetailData' style="width: 100%">
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
+                </table>
+              </div>
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div><!--end col-->
+        <div class="col-lg-6">
+          <div class="card">
+            <div class="card-body">
+              <!-- add map -->
+              <div id="mapDetail"></div>
+              <span class="logo" >
+                <h5>Grafik Sebaran</h5>
+                <div>
+                  <canvas id="myChart"></canvas>
+                </div>
+              </span>
+            </div><!--end card-body-->
+          </div><!--end card-->
+        </div><!--end col-->
 
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/Welcome.php</code>
+      </div><!--end row-->
+    </form>
+  </div><!-- container -->
+  <div class="card text-center">
+    <div class="card-header">
+          <div class="d-flex align-items-center">
+      <strong >Real Time Updated Data</strong> - Dinas Kesehatan Provinsi Sumatera Selatan
+      <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    var showData = document.getElementById('showData');
+    var formTambahData = document.getElementById('formTambahData');
+    formTambahData.style.display='none';
+    var dataJSON = [];
+    let  dataChart;
+    var  dataTempChartLabel = [];
+    var  dataTempChartValue = [];
 
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="userguide3/">User Guide</a>.</p>
-	</div>
+    var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+    var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum;at', 'Sabtu'];
+    var date = new Date();
+    var day = date.getDate();
+    var month = date.getMonth();
+    var thisDay = date.getDay(),
+    thisDay = myDays[thisDay];
+    var yy = date.getYear();
+    var year = (yy < 1000) ? yy + 1900 : yy;
 
-	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
-</div>
+    function showTime() {
+      var a_p = "";
+      var today = new Date();
+      var curr_hour = today.getHours();
+      var curr_minute = today.getMinutes();
+      var curr_second = today.getSeconds();
+      if (curr_hour < 12) {
+        a_p = "AM";
+      } else {
+        a_p = "PM";
+      }
+      if (curr_hour == 0) {
+        curr_hour = 12;
+      }
+      if (curr_hour > 12) {
+        curr_hour = curr_hour - 12;
+      }
+      curr_hour = checkTime(curr_hour);
+      curr_minute = checkTime(curr_minute);
+      curr_second = checkTime(curr_second);
+      document.getElementById('clock').innerHTML=thisDay + ', ' + day + ' ' + months[month] + ' ' + year +" "+curr_hour + ":" + curr_minute + ":" + curr_second + " " + a_p;
+    }
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+    setInterval(showTime, 500);
+                    // getMap();
+    setInterval(getMap, 500);
+  
+    // getMap();
+    function getMap(){
+      var map;
+      navigator.geolocation.getCurrentPosition(function(location) {
+        var latlng = new L.LatLng(location.coords.latitude, location.coords.longitude);
+        map = L.map('map').setView(latlng, 13);
+        var marker = L.marker(latlng).addTo(map).bindPopup("<b>Current location !</b>").openPopup();
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+        }).addTo(map);
+        L.control.scale().addTo(map);
+        $.ajax({
+          type: "POST", 
+          url: "<?php echo base_url('Welcome/getSebaranPenyakitMAPJSON')?>",
+          dataType: "JSON",
+          success: function(data){
+            dataJSON = data;
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+              var colorValue;
+              var radiusValue;
+              if (data[i].totalPerDaerah < 50){
+                colorValue = '#ff0000';
+                radiusValue = 500;
+              }else if (data[i].totalPerDaerah > 50 && data[i].totalPerDaerah < 100){
+                colorValue = '#e60000';
+                radiusValue= 700;
+              }else if (data[i].totalPerDaerah > 150 && data[i].totalPerDaerah < 200){
+                colorValue = '#cc0000';
+                radiusValue= 900;
+              }else if (data[i].totalPerDaerah > 250 && data[i].totalPerDaerah < 350){
+                colorValue = '#b30000';
+                radiusValue= 1100;
+              }else if (data[i].totalPerDaerah > 350 && data[i].totalPerDaerah < 500){
+                colorValue = '#990000';
+                radiusValue= 1300;
+              }else if (data[i].totalPerDaerah > 500 && data[i].totalPerDaerah < 600){
+                colorValue = '#660000';
+                radiusValue= 1500;
+              }
+              circle = L.circle([data[i].lat, data[i].lang], {
+                color: colorValue,
+                fillColor: colorValue,
+                fillOpacity: 0.5,
+                radius: radiusValue
+              }).addTo(map).bindPopup("<center><b>Total Penyakit : "+data[i].totalPerDaerah+"</b><br>Lokasi : "+data[i].namaDaerah+"<br><button type='button' onclick='detailData("+data[i].idDaerah+")' class='btn btn-sm btn-outline-primary'><i data-feather='book' class='align-self-center icon-xs'></i>Detail</button></center>");
+            }
+          }             
+        });
+        map.on('click', onMapClick);
+      });
 
-</body>
-</html>
+    }
+
+    function onMapClick(e) {
+      $('#lang').val(e.latlng.lng);
+      $('#lat').val(e.latlng.lat);
+    }
+
+    function detailData(id){
+      showData.style.display='none';
+      formTambahData.style.display='inline';
+      var tableDetailDataVal = document.getElementById("tableDetailData");
+      tableDetailDataVal.innerHTML = "";
+
+      console.log("id" + id);
+      $.ajax({
+        type: "POST", 
+        url: "<?php echo base_url('Welcome/getSebaranPenyakitMAPJSONDetail')?>",
+        async : false,
+        data : {
+          idSebaran : id
+        },
+        dataType: "JSON",
+        success: function(data){
+          console.log(data);
+          var tempData = "";
+          var idPelayanan;
+          if (data.length > 0){
+            for (var i = 0; i < data.length; i++) {
+              dataTempChartLabel.push("Penyakit :"+data[i].namaPenyakit+"("+data[i].totalInput+") Di "+data[i].namaPelayanan);
+              dataTempChartValue.push(data[i].totalInput);
+              idPelayanan = data[i].idPelayanan;
+              tempData += "<tr><td>Lokasi : <b>"+data[i].namaDaerah+"</b><br><br><img src='<?php echo base_url()?>assets/images/"+data[i].photoPelayanan+"' style='width : 200px;height:100px'></td><td>Nama Pelayanan : <b>"+data[i].namaPelayanan+"</b> <br>Nama Penyakit : "+data[i].namaPenyakit+"<br>Total Data : "+data[i].totalInput+"<br>Tanggal Input : "+data[i].inputDate+"</td></tr>";
+            }
+            tableDetailDataVal.innerHTML = tempData;
+          }
+        }
+      });
+
+      console.log(dataTempChartLabel);
+      console.log(dataTempChartValue);
+
+            //chart
+            const data = {
+              labels: dataTempChartLabel,
+              datasets: [{
+                label: 'My First Dataset',
+                data: dataTempChartValue,
+                backgroundColor: [
+                '#003f5c',
+                '#2f4b7c',
+                '#665191',
+                '#a05195',
+                '#d45087',
+                '#f95d6a',
+                '#ff7c43',
+                '#ffa600',
+                '#F9F871',
+                '#00DAFF',
+                '#FF89F3'
+
+                ],
+                hoverOffset: 4
+              }]
+            };
+
+            const config = {
+              type: 'doughnut',
+              data: data,
+            };
+            dataChart = new Chart(document.getElementById('myChart'),config);
+
+          }
+
+          function tambahCancel(){
+            showData.style.display='inline';
+            formTambahData.style.display='none';
+            dataTempChartLabel = [];
+            dataTempChartValue = [];
+            dataChart.destroy();
+          }
+
+
+        </script>
+      </body>
+      </html>

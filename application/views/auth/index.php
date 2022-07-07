@@ -243,6 +243,8 @@
                   console.log(data);
                   console.log(data.msg);
                   if (data.msg === 'berhasil'){
+                      var audio = new Audio('<?=base_url()?>assets/sound/sound-login.mp3');
+                      audio.play();
                       location.replace("<?=base_url('Home')?>");
                       setAlert('Berhasil Login !','success');
                   }else{
@@ -323,6 +325,10 @@
                 document.getElementById('keteranganAlert').innerHTML = val;
             }
             boxAlertVal.focus();
+            setTimeout(closeAlert, 3000);
+        }
+        function closeAlert(){
+            boxAlertVal.style.display = "none";
         }
 
         function deleteValueForm(){

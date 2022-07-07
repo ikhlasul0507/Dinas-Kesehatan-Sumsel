@@ -148,6 +148,9 @@
                     var formTambahData = document.getElementById('formTambahData');
                     formTambahData.style.display='none';
                     var idUser;
+
+                     
+
                     function prosesTambah(){
                         var msg="";
                         var idRuleAccess= $('#idRuleAccess').val();
@@ -236,6 +239,9 @@
                     function tambahData(){
                         showData.style.display='none';
                         formTambahData.style.display='inline';
+                        $('#password').prop('disabled', false);
+                        $('#password-confirm').prop('disabled', false);
+                        $('#username').prop('disabled', false);
                     }
 
                     function tambahCancel(){
@@ -249,6 +255,7 @@
                         $('#password-confirm').val("");
                         $('#handphone').val("");
                         $('#statusUser').val("1");
+                        idRuleAccess = "";
                     }
                     function cekHapus(id){
                         var result = confirm("Yakin Hapus Data ?");
@@ -292,10 +299,10 @@
                                 $('#password-confirm').val(data.password);
                                 $('#handphone').val(data.handphone);
                                 $('#statusUser').val(data.statusUser);
+                                tambahData();
                                 $('#password').prop('disabled', true);
                                 $('#password-confirm').prop('disabled', true);
                                 $('#username').prop('disabled', true);
-                                tambahData();
                             }             
                           });
                     }

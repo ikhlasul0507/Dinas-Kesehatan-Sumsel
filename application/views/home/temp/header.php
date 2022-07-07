@@ -29,7 +29,19 @@
         <link href="<?= base_url();?>assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
         <!-- Responsive datatable examples -->
         <link href="<?= base_url();?>assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" /> 
+        <!-- for leaflet js -->
+         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+           integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+           crossorigin=""/>
+            <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+           integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+           crossorigin=""></script>
+        <style type="text/css">
+            #map { height: 580px; }
+        </style>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
+
 
     <div class="alert custom-alert custom-alert-danger icon-custom-alert alert-secondary-shadow fade show" role="alert" style="
                                       display:none; 
