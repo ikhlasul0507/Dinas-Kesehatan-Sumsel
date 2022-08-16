@@ -18,19 +18,17 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="<?= base_url();?>assets/js/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <nav class="navbar bg-light"  style="height: 70px">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">
-        <img src="<?= base_url();?>assets/images/logo-dinkes.png" alt="" width="300" height="30" class="d-inline-block align-text-buttom">
-        Sistem Informasi Geografis Penyebaran Penyakit Provinsi Sumatera Selatan || <p class="d-inline-block align-text-buttom text-right" id="clock"></p> 
+  <nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="<?= base_url();?>assets/images/logo-dinkes.png" width="300" height="30" class="d-inline-block align-top" alt="">
         <div class="spinner-grow text-warning" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
-      </a>
-    </div>
-  </nav>
+  </a>
+</nav>
   <div class="" id="showData">
     <!-- Page-Title -->
     <!-- addd -->

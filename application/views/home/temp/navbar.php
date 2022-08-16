@@ -22,7 +22,7 @@
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('Home/backupDatabase') ?>"><i class="ti-control-record"></i>Backup Database</a></li> 
                         </ul>
                     </li>
-                        
+                    <?php if($this->session->userdata('idRuleAccess') == 1 || $this->session->userdata('idRuleAccess') == 5){ ?>
                     <li>
                         <a href="javascript: void(0);"><i data-feather="grid" class="align-self-center menu-icon"></i><span>Master Data</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">
@@ -35,7 +35,7 @@
                             <li class="nav-item"><a class="nav-link" href="<?= base_url('Home/pelayananKesehatan') ?>"><i class="ti-control-record"></i> Pelayanan Kesehatan</a></li>
                         </ul>
                     </li>
-    
+                    <?php } ?>
                     <li>
                         <a href="javascript: void(0);"><i data-feather="file-plus" class="align-self-center menu-icon"></i><span>Display Map</span><span class="menu-arrow"><i class="mdi mdi-chevron-right"></i></span></a>
                         <ul class="nav-second-level" aria-expanded="false">

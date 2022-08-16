@@ -173,7 +173,7 @@
                             if (result) {
                                  $.ajax({
                                     type: "POST", 
-                                    url: "<?php echo base_url('Home/hapusDataDaerah')?>",
+                                    url: "<?php echo base_url('Home/getPelayananKesehatanJSON')?>",
                                     data:  {
                                         idDaerah :id,
                                     },

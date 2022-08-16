@@ -74,10 +74,18 @@
                                       background-color: #303e67;
                                       text-align: center;" id="box-notif-val">                                            
                                    
-                                    <div class="alert-text my-1">
-                                        <h5 class="mb-1 font-weight-bold mt-0" id="typeAlert" style="color: white">Kontak Admin</h5>
+                                    <div class="alert-text my-1" id="boxInfo">
+                                        <h5 class="mb-1 font-weight-bold mt-0"  style="color: white">Kontak Admin</h5>
                                         <span id="keteranganAlert" >Hubungi : 0812-1212-1212</span>
-                                    </div>                                        
+                                    </div>     
+                                    <style type="text/css">
+                                        @media only screen and (max-width: 768px) {
+                                              /* For mobile phones: */
+                                              #boxInfo{
+                                                display:none;
+                                              }
+                                            }
+                                    </style>                                   
                                     <div class="alert-close">
                                        <!--  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true"><i class="mdi mdi-close font-16"></i></span>

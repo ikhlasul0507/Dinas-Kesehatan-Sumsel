@@ -37,7 +37,10 @@
            integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
            crossorigin=""></script>
         <style type="text/css">
-            #map { height: 580px; }
+            #map {
+             height: 580px; 
+             z-index: 1;
+           }
         </style>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     </head>
