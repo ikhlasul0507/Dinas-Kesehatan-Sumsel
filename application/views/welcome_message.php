@@ -27,8 +27,20 @@
         <div class="spinner-grow text-warning" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
+
   </a>
+  
+<div id="google_translate_element"></div>
 </nav>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <div class="" id="showData">
     <!-- Page-Title -->
     <!-- addd -->
